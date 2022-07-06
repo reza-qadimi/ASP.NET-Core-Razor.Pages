@@ -29,6 +29,44 @@
 		{
 			"library": "flag-icon-css@6.6.0",
 			"destination": "wwwroot/lib/flag-icon-css/"
+		},
+		{
+			"provider": "unpkg",
+			"library": "persian-date@1.1.0",
+			"destination": "wwwroot/lib/persian-date/",
+			"files": [
+				"dist/persian-date.js",
+				"dist/persian-date.min.js",
+				"doc/document.md",
+				"doc/leapyear.md"
+			]
+		},
+		{
+      "provider": "unpkg",
+			"library": "persian-datepicker@1.2.0",
+			"destination": "wwwroot/lib/persian-datepicker/",
+			"files": [
+				"dist/index.html",
+				"dist/initial-value.html",
+				"dist/mobile.html",
+				"dist/range.html",
+				"dist/single.html",
+				"dist/css/theme/persian-datepicker-blue.min.css",
+				"dist/css/theme/persian-datepicker-blue.min.css.map",
+				"dist/css/theme/persian-datepicker-cheerup.min.css",
+				"dist/css/theme/persian-datepicker-cheerup.min.css.map",
+				"dist/css/theme/persian-datepicker-dark.min.css",
+				"dist/css/theme/persian-datepicker-dark.min.css.map",
+				"dist/css/theme/persian-datepicker-redblack.min.css",
+				"dist/css/theme/persian-datepicker-redblack.min.css.map",
+				"dist/css/persian-datepicker.css",
+				"dist/css/persian-datepicker.min.css",
+				"dist/css/persian-datepicker.min.css.map",
+				"dist/doc/API.md",
+				"dist/doc/OPTIONS.md",
+				"dist/js/persian-datepicker.js",
+				"dist/js/persian-datepicker.min.js"
+			]
 		}
 	]
 }
