@@ -1,0 +1,166 @@
+﻿@page
+@using Infrastructure.Extensions
+@model Server.Pages.Account.UpdateModel
+@{
+    var currentCultureName =
+        System.Threading.Thread
+            .CurrentThread.CurrentUICulture.Name;
+
+    var pageTitle =
+        Resources.PageTitles.UpdateProfile;
+
+    ViewData["PageTitle"] = pageTitle;
+
+    if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        Layout =
+            "Layouts/Rtl/_Layout";
+    }
+    else
+    {
+        Layout =
+            "Layouts/Ltr/_Layout";
+    }
+}
+
+<form method="post">
+
+    <div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+        <div class="row">
+            <div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+                <fieldset>
+                    <legend>
+                        @(pageTitle)
+                    </legend>
+
+                    <hr />
+
+                    <partial name="PartialViews/_DisplayPageMessages" />
+
+                    <input type="hidden" asp-for="ViewModel.Id" />
+
+                    <div class="row">
+                        
+                        <!-- FirstName Input Start -->
+                        <div class="col-6">
+
+                            <div class="mb-3">
+                                <label asp-for="ViewModel.FirstName" class="form-label"></label>
+
+                                <div class="input-group">
+                                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                    <input asp-for="ViewModel.FirstName" class="form-control"/>
+                                </div>
+
+                                <span asp-validation-for="ViewModel.FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- FirstName Input End -->
+
+                        <!-- LastName Input Start -->
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label asp-for="ViewModel.LastName" class="form-label"></label>
+
+                                <div class="input-group">
+                                    <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                    <input asp-for="ViewModel.LastName" class="form-control"/>
+                                </div>
+
+                                <span asp-validation-for="ViewModel.LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- LastName Input End -->
+                    </div>
+                    
+                    <!-- UserName Input Start -->
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.Username" class="form-label"></label>
+
+                        <input asp-for="ViewModel.Username" class="form-control" />
+
+                        <span asp-validation-for="ViewModel.Username" class="text-danger"></span>
+                    </div>
+                    <!-- UserName Input End -->
+
+                    <div class="row">
+                        
+                        <!-- BirthDate Input Start -->
+                        <div class="col-6">
+                            
+                            @if (ViewData["CultureName"].ToString() == "fa-IR")
+                            {
+                                <div class="mb-3">
+                                    <label asp-for="ViewModel.PersianBirthDate" class="form-label"></label>
+
+                                    <input asp-for="ViewModel.PersianBirthDate" type="text" class="form-control persian-date"/>
+
+                                    <span asp-validation-for="ViewModel.PersianBirthDate" class="text-danger"></span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mb-3">
+                                    <label asp-for="ViewModel.EnglishBirthDate" class="form-label"></label>
+
+                                    <input asp-for="ViewModel.EnglishBirthDate" type="date" class="form-control"/>
+
+                                    <span asp-validation-for="ViewModel.EnglishBirthDate" class="text-danger"></span>
+                                </div>
+                            }
+                            
+
+                        </div>
+                        <!-- BirthDate Input End -->
+
+                        <!-- NationalCode Input Start -->
+                        <div class="col-6">
+                            <div class="mb-3">
+
+                                <label asp-for="ViewModel.NationalCode" class="form-label"></label>
+
+                                <div class="input-group">
+                                    <div class="input-group-text"><i class="bi bi-person-video"></i></div>
+                                    <input asp-for="ViewModel.NationalCode" class="form-control" dir="ltr"/>
+                                </div>
+
+                                <span asp-validation-for="ViewModel.NationalCode" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <!-- NationalCode Input End -->
+                    </div>
+                    
+                    <!-- Gender Input Start -->
+                    <div class="mb-3 d-flex">
+                        @foreach (var gender in System.Enum.GetValues(typeof(Domain.Account.Enumerations.Gender))
+                            .OfType<Domain.Account.Enumerations.Gender>())
+                        {
+                            <div class="me-3">
+                                <input type="radio" asp-for="ViewModel.Gender" value="@((int) gender)" checked="@(gender == Model.ViewModel.Gender)" />
+                                <label asp-for="ViewModel.Gender">@gender.GetDisplayName()</label>
+                            </div>
+                        }
+                    </div>
+                    <!-- Gender Input End -->
+                    
+                    <!-- Description Input Start -->
+                    <div class="mb-3">
+                        <label asp-for="ViewModel.Description" class="form-label"></label>
+
+                        <textarea asp-for="ViewModel.Description" class="form-control" style="resize: none;" rows="4"></textarea>
+
+                        <span asp-validation-for="ViewModel.Description" class="text-danger"></span>
+                    </div>
+                    <!-- Description Input End -->
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Update)</button>
+                        <a asp-page="/Index" class="btn btn-secondary">@(Resources.ButtonCaptions.Home)</a>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</form>
